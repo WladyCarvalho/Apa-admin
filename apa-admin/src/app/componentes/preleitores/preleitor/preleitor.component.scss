@@ -1,0 +1,30 @@
+.normal-form{
+    margin: 20px;
+}
+.controles-container{
+    width: 100%;
+    padding: 2%;
+}
+.button-space{
+    padding: 2%;
+}
+
+.controles-container >*{
+    width: 100%;
+}
+.align-icon-item{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+    margin-right: 20px;
+  }
