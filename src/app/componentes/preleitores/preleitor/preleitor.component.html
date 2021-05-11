@@ -1,66 +1,72 @@
-
+<div>
+  
 <mat-vertical-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Dados pessoais</ng-template>
-       
-       <span>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Dados pessoais</ng-template>
+     
+     <span>
+      <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Nome completo" formControlName="firstCtrl" required>
+        </mat-form-field>
+        
+     </span>
+     <span>
+         
         <mat-form-field>
-            <mat-label>Nome</mat-label>
-            <input matInput placeholder="Nome completo" formControlName="firstCtrl" required>
-          </mat-form-field>
-          
-       </span>
-       <span>
-           
-          <mat-form-field>
-            <mat-label>Designação</mat-label>
-            <input matInput placeholder="Designação" formControlName="firstCtrl" required>
-          </mat-form-field>
-       </span>
+          <mat-label>Designação</mat-label>
+          <input matInput placeholder="Designação" formControlName="firstCtrl" required>
+        </mat-form-field>
+     </span>
 
-        <div>
-          <button mat-button matStepperNext>Próximo</button>
-        </div>
+      <div>
+        <button mat-button matStepperNext>Próximo</button>
+      </div>
 
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Redes sociais</ng-template>
-        <mat-form-field>
-          <mat-label>Facebook</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="https://facebook.com/exemplo"
-                 >
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Twitter</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="https://twitter.com/exemplo"
-                 >
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Instagram</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="https://Instagram.com/exemplo"
-                 >
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Linkdln</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="https://Linkdln.com/exemplo"
-                 >
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button matStepperNext>Próximo</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Feito!</ng-template>
-      <p>Finalizado.</p>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Redes sociais</ng-template>
+      <mat-form-field>
+        <mat-label>Facebook</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="https://facebook.com/exemplo"
+               >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Twitter</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="https://twitter.com/exemplo"
+               >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Instagram</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="https://Instagram.com/exemplo"
+               >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Linkdln</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="https://Linkdln.com/exemplo"
+               >
+      </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Voltar</button>
-        <button mat-button (click)="stepper.reset()">Recomeçar</button>
-        <button mat-button>Salvar</button>
+        <button mat-button matStepperNext>Próximo</button>
       </div>
-    </mat-step>
-  </mat-vertical-stepper>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Feito!</ng-template>
+    <p>Finalizado.</p>
+    <div>
+      <button mat-button matStepperPrevious>Voltar</button>
+      <button mat-button (click)="stepper.reset()">Recomeçar</button>
+      <button mat-button>Salvar</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+</div><br>
+<div>
+  <app-preleitor-list></app-preleitor-list>
+</div>

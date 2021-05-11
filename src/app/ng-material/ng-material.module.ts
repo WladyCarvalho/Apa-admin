@@ -20,6 +20,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule, MatNavList } from '@angular/material/list';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -46,7 +48,10 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
     MatSidenavModule,
     MatListModule,
     MatFormFieldModule,
-    MatStepperModule
+    MatStepperModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatIconModule
   ],
   exports:[
     CommonModule,
@@ -70,7 +75,10 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
     MatSidenavModule,
     MatListModule,
     MatFormFieldModule,
-    MatStepperModule
+    MatStepperModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatIconModule
   ]
 
 })
