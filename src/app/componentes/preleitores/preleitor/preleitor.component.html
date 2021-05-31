@@ -1,14 +1,14 @@
 <div>
   
 <mat-vertical-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+  <mat-step >
+    <form >
       <ng-template matStepLabel>Dados pessoais</ng-template>
      
      <span>
       <mat-form-field>
           <mat-label>Nome</mat-label>
-          <input matInput placeholder="Nome completo" formControlName="firstCtrl" required>
+          <input matInput [formControl]="nome" placeholder="Nome completo"  required>
         </mat-form-field>
         
      </span>
@@ -16,7 +16,7 @@
          
         <mat-form-field>
           <mat-label>Designação</mat-label>
-          <input matInput placeholder="Designação" formControlName="firstCtrl" required>
+          <input matInput [formControl]="designacao" placeholder="Designação" required>
         </mat-form-field>
      </span>
 
@@ -26,28 +26,25 @@
 
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+  <mat-step>
+    <form >
       <ng-template matStepLabel>Redes sociais</ng-template>
       <mat-form-field>
         <mat-label>Facebook</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="https://facebook.com/exemplo"
+        <input matInput [formControl]="facebook" placeholder="https://facebook.com/exemplo"
                >
       </mat-form-field>
       <mat-form-field>
         <mat-label>Twitter</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="https://twitter.com/exemplo"
-               >
+        <input matInput [formControl]="twitter" placeholder="https://twitter.com/exemplo">
       </mat-form-field>
       <mat-form-field>
         <mat-label>Instagram</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="https://Instagram.com/exemplo"
-               >
+        <input matInput [formControl]="instagram" placeholder="https://Instagram.com/exemplo">
       </mat-form-field>
       <mat-form-field>
         <mat-label>Linkdln</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="https://Linkdln.com/exemplo"
-               >
+        <input matInput [formControl]="linkdin" placeholder="https://Linkdln.com/exemplo">
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Voltar</button>
@@ -61,7 +58,7 @@
     <div>
       <button mat-button matStepperPrevious>Voltar</button>
       <button mat-button (click)="stepper.reset()">Recomeçar</button>
-      <button mat-button>Salvar</button>
+      <button mat-button (click)="salvarPreleitor()">Salvar</button>
     </div>
   </mat-step>
 </mat-vertical-stepper>

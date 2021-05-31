@@ -1,3 +1,4 @@
+import { Preleitor } from 'src/app/model/preleitor';
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,9 +11,20 @@ import { Evento } from 'src/app/model/evento';
 })
 export class EventoService {
 
-  constructor(private db: AngularFirestore) { }
+  preleitores:Map<string,Preleitor> = new Map<string,Preleitor>();
+  _preleitores:Preleitor[] = [];
 
+  constructor(private db: AngularFirestore) { }
+  
   criarEvento(evento:Evento){
+   
+    this.preleitores.forEach(p => {
+      this._preleitores.push(p)
+    });
+    
+    evento.preleitores = this._preleitores;
+    console.log(evento.preleitores);
+
     const postData = JSON.parse(JSON.stringify(evento));
     return this.db.collection('eventos').add(postData);
   }
@@ -45,5 +57,10 @@ export class EventoService {
     return eventos;
   }
 
+  setPreleitor(p:Preleitor){
+    this.preleitores.set(p.preleitorId!,p);
 
+    console.log('Preleitor adicionado');
+    console.log(this.preleitores.get(p.preleitorId!)?.nome);
+  }
 }

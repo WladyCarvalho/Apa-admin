@@ -1,0 +1,136 @@
+<div class="mat-elevation-z1">
+  <div class="pesquisa-div">
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <mat-label>Filtrar</mat-label>
+      <input matInput (keyup)="applyFilter()" [(ngModel)]="searchKey" placeholder="Ex. alberto" #input>
+      <button mat-button matSuffix mat-icon-button aria-label="Limpar" *ngIf="searchKey" (click)="onSearchClear()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+
+   
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selecao.hasValue() && isAllSelected()"
+          [indeterminate]="selecao.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selecao.toggle(row) : null"
+          [checked]="selecao.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+      <td mat-cell *matCellDef="let preleitor" class="header-align-right"> {{preleitor.nome}} </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="designacao">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Designação </th>
+      <td mat-cell *matCellDef="let preleitor" class="header-align-right"> {{preleitor.designacao}} </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="acao">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Acção </th>
+      <td mat-cell *matCellDef="let preleitor">
+        <button mat-icon-button>
+          <mat-icon>launch</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (onclick)="onDeleteConfirm(preleitor.idPreleitor)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!--Container que expande os detalhes-->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+          <div class="columns">
+            <div class="column">  
+              <span>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Tema</mat-label>
+                  <input [formControl]="tema" #tema1 matInput placeholder="Tema do preleitor">
+                </mat-form-field>
+              </span><br>
+
+              <span style="margin-bottom: 10px;">
+                <button mat-raised-button color="primary" (click)="setTema()" 
+                [disabled]="!arquivoSelecionado && tema.value === null || tema.value === ''"
+                
+                (click)="upload()">Adicionar preleitor</button>
+              </span>
+            </div>
+
+            <div class="column">
+
+            <!--
+              <angular-file-uploader [config]="afuConfig">
+              </angular-file-uploader> -->
+
+              <label>
+                <input
+                  type="file"
+                  class="text-nowrap text-truncate"
+                  (change)="selectFile($event)"
+                />
+              </label>
+              
+              <div *ngIf="arquivoActual" class="progress mt-2">
+                <div
+                  class="progress-bar progress-bar-info"
+                  role="progressbar"
+                  attr.aria-valuenow="{{ percentagem }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  [ngStyle]="{ width: percentagem + '%' }">
+                  {{ percentagem }}%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </td>
+    </ng-container>
+
+    <!--
+    <ng-container matColumnDef="carregando">
+     <td mat-footer-cell *matFooterCellDef colspan="6">
+       Carregando os dados...
+     </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="noData">
+     <td mat-footer-cell *matFooterCellDef colspan="6">
+       Nenhum dado registrado!
+     </td> 
+    </ng-container>
+  
+  
+    <tr mat-footer-row *matFooterRowDef="['carregando']" [ngClass]="{'hide':dataSource!=null}"></tr>
+    <tr mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':dataSource!=null && dataSource.data.length==0}"></tr>
+   -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="clicou(element)"
+      (click)="expandedElement = expandedElement === element ? null : element" (click)="selecao.toggle(element)"></tr>
+
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[2, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>

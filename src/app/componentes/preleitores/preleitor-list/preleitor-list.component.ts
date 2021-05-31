@@ -1,11 +1,16 @@
+
 import { PreleitorService } from './../shared/preleitor.service';
 import { Preleitor } from 'src/app/model/preleitor';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { inject } from '@angular/core/testing';
+import { DialogoEditPreleitorComponent } from 'src/app/dialogo-edit-preleitor/dialogo-edit-preleitor.component';
+import { DialogoEliminarConfirmComponent } from 'src/app/dialogo-eliminar-confirm/dialogo-eliminar-confirm.component';
 
 @Component({
   selector: 'app-preleitor-list',
@@ -16,7 +21,9 @@ export class PreleitorListComponent implements OnInit {
   private unsubscribe$ = new Subject<void>();
 
   preleitores:Preleitor[]=[];
-  constructor(private preleitor_service:PreleitorService) {}
+  constructor(
+    private preleitor_service:PreleitorService,
+    public dialog: MatDialog) {}
 
   displayedColumns: string[] = ['nome', 'designacao','acao'];
   dataSource = new MatTableDataSource(this.preleitores);
@@ -57,7 +64,7 @@ export class PreleitorListComponent implements OnInit {
        this.dataSource.data=result;
        this.dataSource.paginator = this .paginator;
        this.dataSource.sort = this.sort;
-       console.log(result)
+      // console.log(result)
       }
     );
   }
@@ -68,9 +75,27 @@ export class PreleitorListComponent implements OnInit {
   }
 
 
-  onDeleteConfirm(id:string): void {
-    this.preleitor_service.eliminarPreleitor(id);
+  onEdit(row:any): void {
+    const dialogRef = this.dialog.open(DialogoEditPreleitorComponent,{
+      height: '400px',
+      width: '600px',
+      data:row,
+    });
+    console.log('Editar componente');
+    //this.preleitor_service.eliminarPreleitor(row.preleitorId);
+  }
+
+  onDeleteConfirm(row:any): void {
+    const dialogRef = this.dialog.open(DialogoEliminarConfirmComponent,{
+      height: '200px',
+      width: '600px',
+      data:row,
+    });
+    //console.log(row.preleitorId);
+   
   }
  
 
 }
+
+

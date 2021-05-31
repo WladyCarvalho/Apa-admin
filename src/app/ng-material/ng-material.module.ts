@@ -22,6 +22,10 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 @NgModule({
@@ -51,7 +55,11 @@ import { MatSortModule } from '@angular/material/sort';
     MatStepperModule,
     MatPaginatorModule,
     MatSortModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    
+    
   ],
   exports:[
     CommonModule,
@@ -78,7 +86,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatStepperModule,
     MatPaginatorModule,
     MatSortModule,
-    MatIconModule
+    MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatRadioModule
   ]
 
 })

@@ -14,21 +14,21 @@
     <!-- Position Column -->
   <ng-container matColumnDef="nome">
     <th mat-header-cell  *matHeaderCellDef mat-sort-header> Nome </th>
-    <td mat-cell *matCellDef="let preleitor"> {{preleitor.nome}} </td>
+    <td mat-cell *matCellDef="let preleitor" class="header-align-right"> {{preleitor.nome}} </td>
   </ng-container>
 
   <!-- Position Column -->
   <ng-container matColumnDef="designacao">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Designação </th>
-    <td mat-cell *matCellDef="let preleitor"> {{preleitor.designacao}} </td>
+    <td mat-cell *matCellDef="let preleitor" class="header-align-right"> {{preleitor.designacao}} </td>
   </ng-container>
 
   <!-- Position Column -->
   <ng-container matColumnDef="acao">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Acção </th>
-    <td mat-cell *matCellDef="let row"> 
-      <button mat-icon-button><mat-icon>launch</mat-icon></button>
-      <button mat-icon-button color="warn" ><mat-icon>delete_outline</mat-icon></button>
+    <td mat-cell *matCellDef="let row" class="header-align-right"> 
+      <button mat-icon-button (click)="onEdit(row)"><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button color="warn" (click)="onDeleteConfirm(row)"><mat-icon>delete_outline</mat-icon></button>
     </td>
   </ng-container>
 

@@ -1,8 +1,13 @@
+import { Preleitor } from 'src/app/model/preleitor';
 export class Evento{
-    eventoId!:string|null;
+    
+    createDate:any;
     tema!:string;
     descricao!:string;
     data:any;
     modalidade!:string;
-    preleitores:[]=[];
+    localidade!:string;
+    preleitores!:Preleitor[];
+    eventoId!:string|undefined;
+
 }

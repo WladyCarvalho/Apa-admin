@@ -1,0 +1,68 @@
+<h1 mat-dialog-title>Editar preleitor: {{dado.nome}} </h1>
+<div mat-dialog-content>
+    <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step >
+          <form >
+            <ng-template matStepLabel>Dados pessoais</ng-template>
+           
+           <span>
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input matInput [formControl]="nome" placeholder="Nome completo" value={{dado.nome}} required>
+              </mat-form-field>
+              
+           </span>
+           <span>
+               
+              <mat-form-field>
+                <mat-label>Designação</mat-label>
+                <input matInput [formControl]="designacao" value={{dado.designacao}} placeholder="Designação" required>
+              </mat-form-field>
+           </span>
+      
+            <div>
+              <button mat-button matStepperNext>Próximo</button>
+            </div>
+      
+          </form>
+        </mat-step>
+        <mat-step>
+          <form >
+            <ng-template matStepLabel>Redes sociais</ng-template>
+            <mat-form-field>
+              <mat-label>Facebook</mat-label>
+              <input matInput [formControl]="facebook" placeholder="https://facebook.com/exemplo"
+                     >
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Twitter</mat-label>
+              <input matInput [formControl]="twitter" placeholder="https://twitter.com/exemplo">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Instagram</mat-label>
+              <input matInput [formControl]="instagram" placeholder="https://Instagram.com/exemplo">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Linkdln</mat-label>
+              <input matInput [formControl]="linkdin" placeholder="https://Linkdln.com/exemplo">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Voltar</button>
+              <button mat-button matStepperNext>Próximo</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Feito!</ng-template>
+          <p>Finalizado.</p>
+          <div>
+            <button mat-button matStepperPrevious>Voltar</button>
+            <button mat-button (click)="salvar()">Salvar</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button></button>
+</div>

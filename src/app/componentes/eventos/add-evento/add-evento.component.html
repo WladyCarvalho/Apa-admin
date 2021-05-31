@@ -1,0 +1,64 @@
+
+<div class="columns is-desktop is-full ">
+    <div class="column " style="margin: 20px; ">
+        <div class="container box">
+            <form class="example-form">
+
+                <mat-form-field class="example-full-width block">
+                  <mat-label>Tema do evento</mat-label>
+                  <input matInput [formControl]="tema" placeholder="Tema do  evento a ser registrado">
+                </mat-form-field>
+              
+                <mat-form-field class="example-full-width block">
+                  <mat-label>Descrição</mat-label>
+                  <textarea matInput [formControl]="descricao" placeholder="Sobre o evento..."></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width block">
+                  <input matInput [ngxMatDatetimePicker]="picker" 
+                                  placeholder="Choose a date" 
+                                  [formControl]="data"
+                                  [disabled]="disabled">
+                  <mat-datepicker-toggle matSuffix [for]="$any(picker)">
+                  </mat-datepicker-toggle>
+                  <ngx-mat-datetime-picker #picker 
+                    [showSpinners]="showSpinners" 
+                    [showSeconds]="showSeconds"
+                    [stepHour]="stepHour" 
+                    [stepMinute]="stepMinute" 
+                    [stepSecond]="stepSecond"
+                    [touchUi]="touchUi"
+                    [color]="color">
+                  </ngx-mat-datetime-picker>
+                </mat-form-field>
+
+                <div class="container block">
+                  <mat-radio-group aria-labelledby="Select an option" name="modalidade" [value]="op" (change)="changeModule($event)" >
+                    <mat-radio-button value="On-line"  >On-Line</mat-radio-button>
+                    <mat-radio-button value="presencial"  >Presencial</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+
+                
+                <ng-template [ngIf]="presencial">
+                <mat-form-field class="example-full-width block" >
+                  <mat-label>Local</mat-label>
+                  <input matInput [formControl]="local" placeholder="Endereço do local" >
+                </mat-form-field>
+              </ng-template>
+
+              <ng-template #hide>
+                  <div>
+
+                  </div>
+              </ng-template>
+
+                <span><button mat-raised-button color="primary" style="margin-right:10px" (click)="salvarEvento()">Salvar</button> <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button></span>
+              </form>
+        </div>
+    </div>
+
+    <div class="column m-20" style="margin: 20px;">
+        <app-add-list-preleitores></app-add-list-preleitores>
+    </div>
+</div>
